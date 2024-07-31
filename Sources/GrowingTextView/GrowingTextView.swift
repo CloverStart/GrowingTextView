@@ -126,7 +126,7 @@ open class GrowingTextView: UITextView {
         }
     }
     
-    private func scrollToCorrectPosition() {
+    open func scrollToCorrectPosition() {
         if self.isFirstResponder {
             self.scrollRangeToVisible(NSRange(location: -1, length: 0)) // Scroll to bottom
         } else {
@@ -166,7 +166,7 @@ open class GrowingTextView: UITextView {
     }
     
     // Trim white space and new line characters when end editing.
-    @objc func textDidEndEditing(notification: Notification) {
+    @objc open func textDidEndEditing(notification: Notification) {
         if let sender = notification.object as? GrowingTextView, sender == self {
             if trimWhiteSpaceWhenEndEditing {
                 text = text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -177,7 +177,7 @@ open class GrowingTextView: UITextView {
     }
     
     // Limit the length of text
-    @objc func textDidChange(notification: Notification) {
+    @objc open func textDidChange(notification: Notification) {
         if let sender = notification.object as? GrowingTextView, sender == self {
             if maxLength > 0 && text.count > maxLength {
                 let endIndex = text.index(text.startIndex, offsetBy: maxLength)
